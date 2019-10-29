@@ -33,7 +33,7 @@ cities
 cities[cities < 1000]
 ```
 
-## mostrando itens da series que atendem a condição
+## Mostrando itens da series que atendem a condição
 ```
 less_than_1000 = cities < 1000
 print(less_than_1000)
@@ -41,3 +41,17 @@ print('\n')
 print(cities[less_than_1000])
 ```
 
+## Carregando um DataFrame a partir de um CSV
+```
+from_csv = pd.read_csv('mariano-rivera.csv')
+from_csv.head()
+```
+
+## Carregando um DataFrame a partir de uma URL
+```
+url = 'https://raw.github.com/gjreda/best-sandwiches/master/data/best-sandwiches-geocode.tsv'
+
+# fetch the text from the URL and read it into a DataFrame
+from_url = pd.read_table(url, sep='\t')
+from_url.head()
+```
