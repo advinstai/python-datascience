@@ -1,0 +1,197 @@
+% ### Uses XeLaTeX ### %
+% ### Needs beamer-master ### %
+\documentclass[aspectratio=169]{beamer} %. Aspect Ratio 16:9
+\usetheme{AI2} % beamerthemeSprace.sty
+% DATA FOR FOOTER
+\date{2019}
+\title{}
+\author{}
+\institute{Advanced Institute for Artificial Intelligence (AI2)}
+\begin{document}    
+% ####################################
+% FIRST SLIDE 						:: \SliTit{<Title of the Talk>}{<Author Name>}{<Intitution>}
+% SLIDE SUB-TITLE					:: \SliSubTit{<Title of the Chapter>}{<Title of the Section>}
+% SLIDE WITH TITLE 					:: \SliT{<Title>}{Content}
+% SLIDE NO TITLE 						:: \Sli{<Content>} 
+% SLIDE DOUBLE COLUMN WITH TITLE 	:: \SliDT{<Title>}{<First Column>}{<Second Column>}
+% SLIDE DOUBLE COLUMN NO TITLE 		:: \SliD{<First Column>}{<Second Column>}
+% SLIDE ADVANCED WITH TITLE 			:: \SliAdvT{<Title>}{<Content>}
+% SLIDE ADVANCED  NO TITLE 			:: \SliAdv{<Content>}
+% SLIDE ADVANCED DOUBLE TITLE 		:: SliAdvDT{<Title>}{<First Column>}{<Second Column>}
+% SLIDE ADVANCED DOUBLE NO TITLE 	:: SliAdvD{<First Column>}{<Second Column>}
+% ITEMIZE 							:: \begin{itemize}  \IteOne{1st Level} \IteTwo {2nd Level} \IteThr{3rd Level} \end{itemize}
+% SECTION 							:: \secx{Section} | \secxx{Sub-Section}
+% COLOR BOX 						:: \blu{blue} + \red{red} + \yel{yellow} + \gre{green}
+% FRAME 							:: \fra{sprace} \frab{blue} \frar{red} + \fray{yellow} + \frag{green}	
+% REFERENCE						:: \refer{<doi number>}
+% FIGURE 							::  \img{X}{Y}{<scale>}{Figures/.png} 
+% FIGURE							:: \begin{center}\includegraphics[scale=<#>]{Figures/.png}\end{center}
+% PROJECT STATUS					:: \planned\~    \started\~   \underway\~   \done\~   
+% EXERCICIO							:: \Exe{<#>}{<text>}
+% STACKREL							:: \underset{<down>}{<up>}
+% FLUSH LEFT						:: \begin{flalign*}  & <1st equation> & \\  & <12nd equation>  & \\ \end{flalign*}
+% REAL / IMAGINAY					:: \Re / \Im
+% SLASH								:: \sl{} or \sl
+% BOLD MATH							:: \pmb{<>}
+% ####################################
+%
+% FIRST SLIDE :: DO NOT BREAK LINE !!!
+\SliTit{Pandas}{Advanced Institute for Artificial Intelligence}{https://advancedinstitute.ai}
+
+% SLIDE WITH TITLE
+\SliT{Sumário}{
+
+\begin{itemize}
+  \IteOne{Pandas}
+  \IteOne{Estruturas}
+  \IteOne{Operações}
+\end{itemize}
+
+}
+
+% SLIDE WITH TITLE
+\SliT{Pandas}{
+
+\begin{itemize}
+  \IteOne{Biblioteca Python de código aberto para análise de dados}
+  \IteOne{Pandas é composto por dois tipos de estruturas de dados:}
+  \IteTwo{Series}
+  \IteTwo{DataFrame}
+\end{itemize}
+
+}
+
+% SLIDE WITH TITLE
+\SliT{Pandas}{
+
+\begin{itemize}
+  \IteOne{Uma série é um objeto unidimensional semelhante a uma matriz, lista ou coluna em uma tabela.}
+  \IteOne{Cada item possui um índice, por padrão o índice é de 0 a N}  
+  \IteOne{Alternativamente, você pode especificar um índice para a série.}
+\end{itemize}
+
+}
+
+\SliT{Pandas}{
+
+\begin{itemize}
+  \IteOne{O construtor Series também pode converter um dictonário, usando as chaves do dicionário como índice.}
+  \IteOne{Você pode usar o índice para selecionar itens específicos da série}
+  \IteOne{É possível utilizar uma condição, que ao ser aplicada ao índice, retorna os elementos que atendem a condição}
+  \IteOne{Operações matemáticas podem ser feitas usando escalares e funções.}
+  
+\end{itemize}
+}
+
+\SliT{Pandas}{
+
+DataFrame
+
+\begin{itemize}
+  \IteOne{Estrutura de dados tablular composta de linhas e colunas}
+  \IteTwo{planilha, tabela de banco de dados, etc}
+  \IteTwo{Um Dataframe pode ser também um grupo de objetos series}
+\end{itemize}
+
+}
+
+\SliT{Pandas}{
+
+Montando um Dataframe
+\begin{itemize}
+  \IteOne{Para criar um DataFrame a partir de estruturas de dados Python comuns, podemos passar um dicionário de listas para o construtor DataFrame.}
+  \IteOne{Parâmetro column permite indicar a ordem das colunas}
+\end{itemize}
+
+}
+
+\SliT{Pandas}{
+
+Montando um Dataframe
+\begin{itemize}
+  \IteOne{Para criar um DataFrame a partir de estruturas de dados Python comuns, podemos passar um dicionário de listas para o construtor DataFrame.}
+  \IteOne{Parâmetro column permite indicar a ordem das colunas}
+  \IteOne{É possível criar um Dataframe a partir de um CSV}
+  \IteTwo{fromcsv = pd.read\_csv('teste.csv')}
+  \IteOne{É possível criar um Dataframe a partir de uma URL}
+  \IteTwo{from\_url = pd.read\_table(url)}
+\end{itemize}
+
+}
+
+\SliT{Pandas}{
+
+
+\begin{itemize}
+    \IteOne{Info() : Retorna informações diversas }
+    \IteTwo{número de linhas, colunas, quantidade de espaço ocupado e tipo de dado}
+    \IteOne{Describe() : Retorna informações estatísticas a respeito dos dados de cada coluna }
+
+\end{itemize}
+
+}
+
+\SliT{Pandas}{
+
+\begin{itemize}
+    \IteOne{Definindo uma coluna do dataframe como índice}
+    \IteTwo{users.set\_index('user\_id', inplace $=$ True)}
+    \IteOne{inplace=true indica que a própria referência deve ser alterada, senão um novo dataframe é retornado}
+\end{itemize}
+}
+
+\SliT{Pandas}{
+
+Seleção de linhas e colunas
+
+\begin{itemize}
+    \IteOne{A seleção de uma coluna retorna um objeto series}
+    \IteTwo{display(from\_url[['rank', 'price']].head())}
+    \IteTwo{print(from\_url[['rank', 'price']].head())}
+    \IteOne{Selecionando linhas}
+    \IteTwo{display(users[users.age $>$ 25].head(3))}
+\end{itemize}
+
+}
+
+\SliT{Pandas}{
+
+Seleção de linhas e colunas loc, iloc e ix:
+
+\begin{itemize}
+    \IteOne{.loc [] funciona nos rótulos do seu índice. Isso significa que, se você fornecer o loc [2], procurará os valores do seu DataFrame com um índice rotulado 2.}
+    \IteOne{.iloc [] trabalha nas posições em seu índice. Isso significa que, se você fornecer iloc [2], procurará os valores do seu DataFrame que estão no índice '2`.}
+    \IteOne{.ix [] é um caso mais complexo: quando o índice é baseado em números inteiros, você passa um rótulo para .ix [].}
+\end{itemize}
+
+}
+
+\begin{frame}[fragile] \frametitle{Orientação a objeto}
+Exemplos
+
+\begin{verbatim}
+df = pd.DataFrame(data=np.array([[1, 2, 3], [4, 5, 6], [7, 8, 9]]), index= [2, 'A', 4], columns=[48, 49, 50])
+
+# Pass `2` to `loc`
+print(df.loc[2])
+
+# Pass `2` to `iloc`
+print(df.iloc[2])
+
+# Pass `2` to `ix`
+print(df.ix[2])
+\end{verbatim}
+
+\end{frame}
+
+\SliT{Pandas}{
+
+Adicionando colunas
+
+\begin{itemize}
+    \IteOne{basta utilizar um nome de coluna inexistente e passar um objeto series como parâmetro}
+\end{itemize}
+
+}
+
+\end{document}
