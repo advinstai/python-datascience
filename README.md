@@ -71,3 +71,18 @@ url = 'https://raw.github.com/gjreda/best-sandwiches/master/data/best-sandwiches
 from_url = pd.read_table(url, sep='\t')
 from_url.head()
 ```
+
+## Exemplo com loc, iloc e ix
+```
+df = pd.DataFrame(data=np.array([[1, 2, 3], [4, 5, 6], [7, 8, 9]]), index= [2, 'A', 4], columns=[48, 49, 50])
+
+# Pass `2` to `loc`
+print(df.loc[ 'A'])
+
+# Pass `2` to `iloc`
+print(df.iloc[1])
+
+# Pass `2` to `ix`
+#print(df.ix[2])
+#print(df.ix[2])
+```
