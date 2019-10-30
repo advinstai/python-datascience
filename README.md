@@ -83,6 +83,10 @@ print(df.loc[ 'A'])
 print(df.iloc[1])
 
 # Pass `2` to `ix`
-#print(df.ix[2])
-#print(df.ix[2])
+print(df.ix[2])
+
+df3 = from_url.iloc[:,[0,2]]
+print(df3)
+print(df3.loc[ df3['rank']>10])
+
 ```
