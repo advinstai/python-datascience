@@ -43,7 +43,7 @@ print(cities[less_than_1000])
 
 ## Carregando um DataFrame a partir de um CSV
 ```
-from_csv = pd.read_csv('mariano-rivera.csv')
+from_csv = pd.read_csv('teste.csv')
 from_csv.head()
 ```
 
