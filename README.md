@@ -41,6 +41,22 @@ print('\n')
 print(cities[less_than_1000])
 ```
 
+## Cálculos com series
+```
+cities/3
+np.square(cities)
+```
+
+## trabalhando com nulos
+```
+print(cities)
+cities.notnull()
+
+print(cities.isnull())
+print('\n')
+print(cities[cities.isnull()])
+```
+
 ## Carregando um DataFrame a partir de um CSV
 ```
 from_csv = pd.read_csv('teste.csv')
