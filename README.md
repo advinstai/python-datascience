@@ -92,4 +92,6 @@ print(df3.loc[ df3['rank']>10])
 ```
 
 ## conversao para int
+```
 df["normalized-losses"]=df["normalized-losses"].astype(int)
+```
