@@ -234,3 +234,10 @@ df5 = pd.DataFrame({'group': ['Accounting', 'Accounting',
 'Engineering', 'Engineering', 'HR', 'HR'],'skills': ['math', 'spreadsheets', 'coding', 'linux',
 'spreadsheets', 'organization']})
 print(df1); print(df5); print(pd.merge(df1, df5))
+
+#conversao para int
+df["normalized-losses"]=df["normalized-losses"].astype(int)
+
+#sort
+df.sort_values(by=['Brand'], inplace=True)
+               
