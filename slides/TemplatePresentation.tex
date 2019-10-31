@@ -166,11 +166,12 @@ Seleção de linhas e colunas loc, iloc e ix:
 
 }
 
-\begin{frame}[fragile] \frametitle{Orientação a objeto}
+\begin{frame}[fragile] \frametitle{Pandas}
 Exemplos
 
 \begin{verbatim}
-df = pd.DataFrame(data=np.array([[1, 2, 3], [4, 5, 6], [7, 8, 9]]), index= [2, 'A', 4], columns=[48, 49, 50])
+df = pd.DataFrame(data=np.array([[1, 2, 3], [4, 5, 6], [7, 8, 9]]), 
+index= [2, 'A', 4], columns=[48, 49, 50])
 
 # Pass `2` to `loc`
 print(df.loc[2])
@@ -193,5 +194,188 @@ Adicionando colunas
 \end{itemize}
 
 }
+
+\SliT{Pandas}{
+
+\begin{table}
+\centering
+\begin{small}
+\caption{Operadores Python e métodos Pandas} \label{Tabela1}
+\begin{tabular}{cc}
+\hline
+Operador Python   & Método Pandas\\
+\hline
++              & add()  \\
+-              & sub() , subtract()  \\
+*              & mul() , multiply()  \\
+/              & truediv() , div() , divide()  \\
+//              & floordiv()  \\
+\%              & mod()  \\
+**              & pow()  \\
+\hline
+\end{tabular}
+\end{small}
+\end{table}
+
+}
+
+\begin{frame}[fragile] \frametitle{Pandas}
+Representação de dados ausentes:
+
+\begin{itemize}
+    \IteOne{none: indica uma ausência de valor, a variável aponta para local nulo}
+    \IteOne{NaN (sigla para Not a Number): padrão IEEE que representa um número inválido}
+    \IteOne{Ao criar um dataframe usando algum tipo numérico (float, int, ...) todo objeto do tipo None é covertido automaticamente para NaN}
+
+\end{itemize}
+
+\begin{verbatim}
+vals1 = np.array([1, None, 3, 4])
+vals1.sum()
+vals2 = np.array([1, np.nan, 3, 4])
+vals2.sum()
+\end{verbatim}
+
+\end{frame}
+
+\SliT{Pandas}{
+
+Manipulando valores nulos
+
+\begin{itemize}
+    \IteOne{isnull(): Gere uma máscara booleana indicando valores ausentes}
+    \IteOne{notnull(): Oposto de isnulll()}
+    \IteOne{fillna(): Retorna um dataframe filtrada sem dados nulos}
+    \IteOne{dropna(): Retorna um dataframe com valores ausentes preenchidos}
+\end{itemize}
+
+}
+
+\begin{frame}[fragile] \frametitle{Pandas}
+
+Índices podem ser compostos por múltiplos valores
+
+\begin{verbatim}
+index = [('California', 2000), ('California', 2010),
+('New York', 2000), ('New York', 2010),
+('Texas', 2000), ('Texas', 2010)]
+
+populations = [33871648, 37253956,
+18976457, 19378102,
+20851820, 25145561]
+
+pop = pd.Series(populations, index=index)
+\end{verbatim}
+
+\end{frame}
+
+\begin{frame}[fragile] \frametitle{Pandas}
+
+Filtrar por um índice multivalorado tornar-se complexo
+\begin{verbatim}
+pop[[i for i in pop.index if i[1] == 2010]]
+\end{verbatim}
+
+Método reindex permite criar novos índices a partir de índices multivalorados
+
+\begin{verbatim}
+pop = pop.reindex(index)
+print(pop)
+pop[:, 2010]
+\end{verbatim}
+
+\end{frame}
+
+\begin{frame}[fragile] \frametitle{Pandas}
+Concatenação de dataframes: método concat
+\begin{verbatim}
+ser1 = pd.Series(['A', 'B', 'C'], index=[1, 2, 3])
+ser2 = pd.Series(['D', 'E', 'F'], index=[4, 5, 6])
+pd.concat([ser1, ser2])
+\end{verbatim}
+
+\begin{verbatim}
+método verify_integrity = True verifica a integridade dos índices
+método ignore_index=True -> refaz o índice, ignorando o que havia anteriormente
+\end{verbatim}
+
+\end{frame}
+
+\begin{frame}[fragile] \frametitle{Pandas}
+Join : concatena dois dataframes, usando um conjunto de colunas como critério
+
+No primeiro caso as colunas que não são comuns, são preenchidas com valores nulos
+\begin{verbatim}
+df5 = make_df('ABC', [1, 2])
+df6 = make_df('BCD', [3, 4])
+print(df5); print(df6); print(pd.concat([df5, df6])
+\end{verbatim}
+
+Nesse caso as colunas que não estão presentes em df5 são descartadas
+\begin{verbatim}
+print(df5); print(df6);
+print(pd.concat([df5, df6], join_axes=[df5.columns]))
+\end{verbatim}
+
+
+\end{frame}
+
+\begin{frame}[fragile] \frametitle{Pandas}
+merge: implementa algebra relacionao do tipo
+
+\begin{itemize}
+    \IteOne{1 para 1}
+    \IteOne{1 para N}
+    \IteOne{M para N}
+\end{itemize}
+
+1 para 1
+\begin{verbatim}
+df1 = pd.DataFrame({'employee': ['Bob', 'Jake', 'Lisa', 'Sue'],
+'group': ['Accounting', 'Engineering', 'Engineering', 'HR']})
+df2 = pd.DataFrame({'employee': ['Lisa', 'Bob', 'Jake', 'Sue'],
+'hire_date': [2004, 2008, 2012, 2014]})
+print(df1); print(df2)
+df3 = pd.merge(df1, df2)
+df3
+\end{verbatim}
+
+\end{frame}
+
+\begin{frame}[fragile] \frametitle{Pandas}
+
+1 para muitos
+\begin{verbatim}
+df4 = pd.DataFrame({'group': ['Accounting', 'Engineering', 'HR'],
+'supervisor': ['Carly', 'Guido', 'Steve']})
+print(df3); print(df4); print(pd.merge(df3, df4))
+\end{verbatim}
+
+muitos para muitos
+\begin{verbatim}
+df5 = pd.DataFrame({'group': ['Accounting', 'Accounting',
+'Engineering', 'Engineering', 'HR', 'HR'],'skills': ['math', 'spreadsheets', 'coding', 'linux',
+'spreadsheets', 'organization']})
+print(df1); print(df5); print(pd.merge(df1, df5))
+\end{verbatim}
+
+\end{frame}
+
+\SliT{Pandas}{
+
+Outros parâmetros para merge
+
+\begin{itemize}
+    \IteOne{on: define a coluna que vai ser usada como critério para o merge }
+    \IteOne{left\_on e right\_on: define as colunas de cada tabela, caso tenham nomes distintos }
+    \IteOne{how : define aritmética do join}
+    \IteTwo{inner : retorna apenas a intersecção}
+    \IteTwo{outer : linhas fora da intersecção, retornam com valores nulos}
+    \IteTwo{left : linhas fora da intersecção no primeiro dataframe retornam com valores nulos e as linhas do segundo dataframe fora da intersecção são descartadas}
+    \IteTwo{right: linhas fora da intersecção no primeiro dataframe são descartadas e as linhas do segundo dataframe fora da intersecção retornam com valores nulos}
+\end{itemize}
+
+}
+
 
 \end{document}
