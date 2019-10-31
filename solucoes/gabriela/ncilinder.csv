@@ -1,0 +1,12 @@
+index,company,body-style,wheel-base,length,engine-type,num-of-cylinders,horsepower,average-mileage,price
+2,alfa-romero,hatchback,94.5,171.2,ohcv,six,154,19,16500.0
+11,bmw,sedan,101.2,176.8,ohc,six,121,21,20970.0
+13,bmw,sedan,103.5,189.0,ohc,six,182,16,30760.0
+14,bmw,sedan,103.5,193.8,ohc,six,182,16,41315.0
+15,bmw,sedan,110.0,197.0,ohc,six,182,15,36880.0
+33,jaguar,sedan,113.0,199.6,dohc,six,176,15,32250.0
+34,jaguar,sedan,113.0,199.6,dohc,six,176,15,35550.0
+57,nissan,sedan,100.4,184.6,ohcv,six,152,19,13499.0
+61,porsche,hardtop,89.5,168.9,ohcf,six,207,17,34028.0
+62,porsche,convertible,89.5,168.9,ohcf,six,207,17,37028.0
+79,toyota,wagon,104.5,187.8,dohc,six,156,19,15750.0
