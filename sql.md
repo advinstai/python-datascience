@@ -27,3 +27,5 @@ sqlite_web survey.db
 ```
 sqlite3 -header -csv /home/silvio/survey.db "select * from visited" > surveyDB.csv
 ```
+
+Curso Self-paced de SQL: http://swcarpentry.github.io/sql-novice-survey/
