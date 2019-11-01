@@ -22,3 +22,8 @@ sqlite3 survey.db
 ```
 sqlite_web survey.db
 ```
+
+## Exportando dados de uma tabela para um CSV
+```
+sqlite3 -header -csv /home/silvio/survey.db "select * from visited" > surveyDB.csv
+```
