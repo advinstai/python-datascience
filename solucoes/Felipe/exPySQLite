@@ -1,0 +1,62 @@
+#!/usr/bin/env python2
+# -*- coding: utf-8 -*-
+"""
+Created on Mon Nov  4 14:05:57 2019
+
+@author: felipe
+
+
+
+Titanic
+
+1 Leia os dados train.csv usando pandas
+
+2 Remova a coluna com nomes de pessoas
+
+3 A coluna Cabin contém uma letra e um número. Crie uma nova coluna chamada deck 
+usando apenas a letra de cada registro presente na coluna Cabin.
+
+4 Substitua os valores ausentes pela média de valores da coluna
+
+5 Os valores da coluna "embarked" sao os seguintes: C = Cherbourg, Q = Queenstown, S = Southampton
+
+6 Crie um CSV com essas uma coluna nome_cidade_de_embarque: C = Cherbourg, Q = Queenstown, S = Southampton e 
+mais uma coluna chamada população com valores hipotéticos, 
+faça um merge entre o CSV train.csv e esse novo CSV com os nomes das cidades. 
+Implemente um filtro de passageiros por população da cidade de embarque
+
+
+
+"""
+
+
+import pandas as pd
+import numpy as np
+
+train = pd.read_csv("train.csv")
+
+traind = train.drop(['Name'], axis=1)
+
+deckp = traind['Cabin'].replace(np.nan,"?")
+
+deck = pd.Series(map(lambda x: x[0], deckp)) #retira a primeira letra
+
+traind['deck'] = deck
+
+#ou traind['deck'] = deckp.str[0]
+
+mediaIdade = traind.Age.mean()
+
+traind.Age = traind.Age.replace(np.nan,mediaIdade)
+
+cidades = traind.Embarked.replace('C','Cherbourg' ).replace('Q', 'Queenstown').replace('S', 'Southampton')
+
+traind['nome_cidade_de_embarque'] = cidades
+
+#salva a versão nova num novo arquivo
+traind.to_csv('passagems.csv')
+
+def filtroPopCidade(codigo_cidade):
+    return traind.deck.value_counts()[codigo_cidade]
+
+
